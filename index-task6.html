@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finals Lab Task 6 - MongoDB Database</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #000 30%, #020f1f 70%);
+      color: white;
+      line-height: 1.6;
+    }
+    header {
+      background: #0a0a0a;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 10px white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    @keyframes color-change {
+      0% { color: white; }
+      50% { color: #00f0ff; }
+      100% { color: white; }
+    }
+    h1 {
+      font-size: 2rem;
+      animation: color-change 10s ease-in-out infinite;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00f0ff;
+    }
+    section {
+      padding: 100px 20px 40px; 
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2.section-title {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid white;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .step-process {
+      margin-top: 20px;
+    }
+    .step-process h3 {
+      font-size: 1.5rem;
+      margin: 20px 0 10px;
+    }
+    .step-process ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .step-process ul li {
+      margin-bottom: 10px;
+    }
+    .project-image {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: 2px solid white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      cursor: pointer;
+    }
+    .project-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.8);
+    }
+    .download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #00f0ff, #007fff);
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+    .download-btn i {
+      margin-right: 10px;
+    }
+    .download-btn:hover {
+      background: white;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid white;
+      background: #0a0a0a;
+      margin-top: 40px;
+      color: #aaa;
+    }
+    .preview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+    .preview-modal img {
+      max-width: 80%;
+      max-height: 80%;
+      transition: transform 0.3s ease;
+    }
+    .preview-modal.show {
+      display: flex;
+    }
+    .preview-modal .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.7);
+      border: none;
+      border-radius: 50%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .preview-modal .close-btn:hover {
+      background: rgba(255, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Finals Lab Task 6 - MongoDB Database</h1>
+    <nav>
+      <a href="https://austincgarcia.github.io/AustinEDM/">Back to Portfolio</a>
+    </nav>
+  </header>
+  <section>
+    <h2 class="section-title">Project Overview</h2>
+    <p>This portfolio demonstrates the fundamentals of MongoDB by performing basic operations such as creating a database, inserting documents, and executing find, update, search, and delete actions within collections. It also explores relationships between collections and visualizes the entity-relationship structure.</p>
+    <a href="https://github.com/user-attachments/files/20347973/Garcia.Austin.Karl.C.docx" class="download-btn" target="_blank">
+      <i class="fas fa-file-download"></i> Download Document
+    </a>
+    <div class="step-process">
+      <h3>Step-by-Step Process</h3>
+      <ul>
+        <li>Create or switch to a MongoDB database.</li>
+        <li>Insert multiple documents into a <b>movies</b> collection.</li>
+        <li>Perform find queries with various filters and conditions.</li>
+        <li>Update documents by adding or modifying fields.</li>
+        <li>Search documents using text criteria.</li>
+        <li>Delete specific documents from the collection.</li>
+        <li>Work with related collections: <b>users</b>, <b>posts</b>, and <b>comments</b>.</li>
+        <li>Query relationships and visualize the ER diagram.</li>
+      </ul>
+    </div>
+    <h2 class="section-title">Insert Documents</h2>
+    <p>Insert the following documents into a <b>movies</b> collection:</p>
+    <img src="https://github.com/user-attachments/assets/e0f4cd25-6b71-479a-aa10-fa7fad40b2bf" alt="Fight Club" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/7ca93d25-d186-4be9-b683-abd66616d154" alt="Pulp Fiction" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/f0187364-22b8-4b95-919e-a8f0610e9f09" alt="Inglorious Basterds" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/335c36e3-9bed-456e-86a8-cfbc6b78daf5" alt="The Hobbit: An Unexpected Journey" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/fe6e864b-19fd-49f8-af66-a29a2761962b" alt="The Hobbit: The Desolation of Smaug" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/6ad220eb-9b31-4487-8962-2b8791254e43" alt="The Hobbit: The Battle of the Five Armies" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/dc49f121-d362-4c17-b9c8-72753d4f84b1" alt="Pee Wee Herman's Big Adventure" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/44a02b91-e03c-4125-87f7-798e1756db1c" alt="Avatar" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">FIND Documents</h2>
+    <img src="https://github.com/user-attachments/assets/d87ac511-b033-4f10-ae9a-1efda2d15507" alt="Find All 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/b0ceffe4-2bd1-4ac7-bf9a-8e14b1e56b5d" alt="Find All 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/2fb556a8-f96a-4396-a8cc-c0ba45086804" alt="Find All 3" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/ed5567a8-8674-4168-b9a8-fc3cfc9dac22" alt="Find Quentin Tarantino" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/6182e9c4-b133-4f41-8cef-3e7f05d0ac8b" alt="Find Brad Pitt" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/1b209e5c-afea-4baa-9c95-34764b4bdc9b" alt="Find Hobbit Franchise" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/7d3d6de3-93cb-47de-a9b6-cb02b4505748" alt="Find 90s Movies" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/c08b95d2-f826-4999-bc9e-c0b2fd42d349" alt="Find Before 2000 or After 2010" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">UPDATE Documents</h2>
+    <img src="https://github.com/user-attachments/assets/50454a68-0d19-4759-8e51-ea83638bb2c4" alt="Update Hobbit 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/582d82b3-db06-46e8-b8a1-cc06c09df70a" alt="Update Hobbit 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/acd6c6ce-a6ab-443e-9a69-3df1633b6df9" alt="Update Pulp Fiction" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">SEARCH Documents</h2>
+    <img src="https://github.com/user-attachments/assets/d0fd6666-614d-4eb2-b30a-0ca378a047bf" alt="Search Bilbo" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/d0f46cd3-3ff8-46c1-8ae3-5c60ee0b4515" alt="Search Gandalf" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/9cb5462a-99b4-49ba-8c96-3500959d02eb" alt="Search Bilbo Not Gandalf" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/ce3da7dc-a9c4-4fe8-a333-215e4fb15836" alt="Search Dwarves or Hobbit" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/6b8b8f5b-9005-4bca-87dc-7b59e4dc218e" alt="Search Gold and Dragon" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">DELETE Documents</h2>
+    <img src="https://github.com/user-attachments/assets/62500dd5-dc5a-4190-ad19-2d197c0e7274" alt="Delete Pee Wee" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/9d44c16c-ed13-442f-a7d3-b57cbd1c1280" alt="Delete Avatar" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">Relationship Collections</h2>
+    <h3>Users Collection</h3>
+    <img src="https://github.com/user-attachments/assets/4ac4f4d2-e2fc-41a4-9430-311ae46ad3c8" alt="GoodGuyGreg" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/ae8e9f12-cdb5-4c06-a51d-e0688b19535f" alt="ScumbagSteve" class="project-image" onclick="openPreview(this)">
+    <h3>Posts Collection</h3>
+    <img src="https://github.com/user-attachments/assets/0d9e4870-140c-42ab-a976-e17ecc724c91" alt="Post 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/7e2d9ae3-902b-497d-8ce0-d1afe2ce8701" alt="Post 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/e76a5c01-0c3d-485a-94c1-7adaf2bdf69f" alt="Post 3" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/aac7fbc7-283d-4507-ab25-31fefafa7ab4" alt="Post 4" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/a9ae17f8-8538-44b7-bc52-20bb34f28817" alt="Post 5" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/5040158a-e6fa-40ff-a845-4dc2d3bf7d36" alt="Post 6" class="project-image" onclick="openPreview(this)">
+    <h3>Comments Collection</h3>
+    <img src="https://github.com/user-attachments/assets/0af710f5-208c-4b42-9b0e-4ba91e7569b0" alt="Comment 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/3ca6a19f-f93f-481f-b63a-e5811c748911" alt="Comment 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/f478141b-f8ce-4b52-8896-277b322fa1da" alt="Comment 3" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/0898dfd0-a093-4650-8592-126dbd206b98" alt="Comment 4" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/3e20aa96-a2ae-4818-adc0-53e751517db0" alt="Comment 5" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">Querying Related Collections</h2>
+    <img src="https://github.com/user-attachments/assets/76df7786-e18e-4c05-88ff-ef31f0b743f3" alt="Find All Users" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/65a90d66-46ee-4a76-be53-3acdb11927c7" alt="Find All Posts 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/616c4bdd-88ac-4357-81d7-946da3f0fda3" alt="Find All Posts 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/c33ca38b-0449-422f-aad2-9c77475068dd" alt="Find GoodGuyGreg Posts" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/b2bae686-defb-462a-8f66-b2c14cfc751f" alt="Find ScumbagSteve Posts" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/59eea7f6-224b-4135-aba7-2875697659e5" alt="Find All Comments 1" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/69d1aa7e-5464-472c-ba81-a486b514d632" alt="Find All Comments 2" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/ad2cd56d-fdbd-4b12-a609-bf1ddca4ea1c" alt="Find GoodGuyGreg Comments" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/d53eb68e-0b68-47c4-824a-965165a04611" alt="Find ScumbagSteve Comments" class="project-image" onclick="openPreview(this)">
+    <img src="https://github.com/user-attachments/assets/322c9669-498e-4c1a-b334-529c8d3505b8" alt="Find Comments for Reports a bug in your code" class="project-image" onclick="openPreview(this)">
+    <h2 class="section-title">Entity-Relationship (ER) Diagram</h2>
+    <img src="https://github.com/user-attachments/assets/dd450c6d-27df-499f-bfcf-3a5ab1ef55f1" alt="ER Diagram" class="project-image" onclick="openPreview(this)">
+  </section>
+  <footer>
+    <p>© 2025 Austin's EDM Portfolio. All rights reserved.</p>
+  </footer>
+  <div id="preview-modal" class="preview-modal">
+    <button class="close-btn" onclick="closePreview()">×</button>
+    <img id="preview-image" src="" alt="Preview Image">
+  </div>
+  <script>
+    function openPreview(image) {
+      var modal = document.getElementById("preview-modal");
+      var previewImage = document.getElementById("preview-image");
+      previewImage.src = image.src;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closePreview() {
+      var modal = document.getElementById("preview-modal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "auto";
+    }
+  </script>
+</body>
+</html> 
